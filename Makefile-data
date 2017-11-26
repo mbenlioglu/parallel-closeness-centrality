@@ -1,0 +1,15 @@
+extract: hollywood-2009.tar.gz karate.tar.gz soc-LiveJournal1.tar.gz
+	tar -xzvf ./data/hollywood-2009.tar.gz -C ./data/
+	tar -xzvf ./data/karate.tar.gz -C ./data/
+	tar -xzvf ./data/soc-LiveJournal1.tar.gz -C ./data/
+hollywood-2009.tar.gz:
+	mkdir -p data
+	wget -P ./data/ https://sparse.tamu.edu/MM/LAW/hollywood-2009.tar.gz
+karate.tar.gz:
+	mkdir -p data
+	wget -P ./data/ https://sparse.tamu.edu/MM/Newman/karate.tar.gz
+soc-LiveJournal1.tar.gz:
+	mkdir -p data 
+	wget -P ./data/ https://sparse.tamu.edu/MM/SNAP/soc-LiveJournal1.tar.gz
+clean:
+	rm ./data/hollywood-2009.tar.gz ./data/karate.tar.gz ./data/soc-LiveJournal1.tar.gz
