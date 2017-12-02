@@ -222,7 +222,7 @@ mmio.o:./src/mmio.c
 		$(EXEC) $(HOST_COMPILER) -o $@ -c $< -O3 -fpermissive
 
 main.o:./src/main.cpp
-		$(EXEC) $(HOST_COMPILER) $(LIBRARIES) -fopenmp -O3 -std=c++14 -o $@ -c $<
+		$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
 
 closenessCentrality: closenessCentrality.o graphio.o mmio.o main.o
 		$(EXEC) $(HOST_COMPILER) -o $@ $+ $(LIBRARIES) -fpermissive -O3
