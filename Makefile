@@ -221,8 +221,8 @@ graphio.o:./src/graphio.c
 mmio.o:./src/mmio.c
 		$(EXEC) gcc -o $@ -c $< -O3 -fpermissive
 
-main.o:./src/main.cpp graphio.o mmio.o
-		$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $+
+main.o:./src/main.cpp
+		$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) -Xcompiler -std=c++14 $(GENCODE_FLAGS) -o $@ -c $+
 
 closenessCentrality:closenessCentrality.o main.o graphio.o mmio.o
 		$(EXEC) $(HOST_COMPILER) -o $@ $+ $(LIBRARIES) -fpermissive -O3 -std=c++14
