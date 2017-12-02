@@ -38,6 +38,9 @@ cudaError_t CudaClosenessCent(int *result, const etype *rowPtr, const vtype *col
 	int *dev_result = 0;
 	cudaError_t cudaStatus;
 
+	int numThreads = (int)sqrt(THREADS_PER_BLOCK);
+	dim3 dimBlock(numThreads, numThreads, 1);
+
 	//===========================================================================================================================
 	// Allocate GPU buffers for three vectors (two input, one output)
 	cudaStatus = cudaMalloc((void**)&dev_result, nov * sizeof(int));
@@ -74,9 +77,6 @@ cudaError_t CudaClosenessCent(int *result, const etype *rowPtr, const vtype *col
 
 	//===========================================================================================================================
 	// Launch a kernel on the GPU with one thread for each element, and check for errors.
-	int numThreads = (int)sqrt(THREADS_PER_BLOCK);
-	dim3 dimBlock(numThreads, numThreads, 1);
-	//dim3 dimGrid(nov / numThreads, nov / numThreads);
 	printf("%d, %d\n", nov, nov / numThreads);
 	ClosenessCentKernel<<<(nov+THREADS_PER_BLOCK-1)/THREADS_PER_BLOCK, dimBlock>>>(dev_result, dev_rowPtr, dev_colInd, nov);
 
