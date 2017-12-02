@@ -224,7 +224,7 @@ mmio.o:./src/mmio.c
 main.o:./src/main.cpp graphio.o mmio.o
 		$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $+
 
-closenessCentrality:closenessCentrality.o main.o
+closenessCentrality:closenessCentrality.o graphio.o mmio.o main.o
 		$(EXEC) $(HOST_COMPILER) -o $@ $+ $(LIBRARIES) -fpermissive -O3
 		$(EXEC) mkdir -p ./bin/$(TARGET_ARCH)/$(TARGET_OS)/$(BUILD_TYPE)
 		$(EXEC) cp $@ ./bin/$(TARGET_ARCH)/$(TARGET_OS)/$(BUILD_TYPE)
