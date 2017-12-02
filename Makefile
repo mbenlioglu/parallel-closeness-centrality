@@ -117,8 +117,8 @@ HOST_COMPILER ?= g++
 NVCC          := $(CUDA_PATH)/bin/nvcc -ccbin $(HOST_COMPILER)
 
 # internal flags
-NVCCFLAGS   := -m${TARGET_SIZE}
-CCFLAGS     := -O3 -fopenmp -std=c++14
+NVCCFLAGS   := -m${TARGET_SIZE} -O3
+CCFLAGS     := -O3
 LDFLAGS     :=
 
 # build flags
@@ -170,8 +170,8 @@ ALL_LDFLAGS += $(addprefix -Xlinker ,$(LDFLAGS))
 ALL_LDFLAGS += $(addprefix -Xlinker ,$(EXTRA_LDFLAGS))
 
 # Common includes and paths for CUDA
-INCLUDES  := 
-LIBRARIES :=
+INCLUDES  :=
+LIBRARIES := -lcuda -lcudart -L/usr/local/cuda/lib64/
 
 ################################################################################
 
@@ -225,7 +225,7 @@ main.o:./src/main.cpp
 		$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
 
 closenessCentrality: closenessCentrality.o graphio.o mmio.o main.o
-		$(EXEC) $(NVCC) $(ALL_LDFLAGS) $(GENCODE_FLAGS) -o $@ $+ $(LIBRARIES)
+		$(EXEC) $(HOST_COMPILER) -o $@ $+ $(LIBRARIES) -fpermissive -O3
 		$(EXEC) mkdir -p ./bin/$(TARGET_ARCH)/$(TARGET_OS)/$(BUILD_TYPE)
 		$(EXEC) cp $@ ./bin/$(TARGET_ARCH)/$(TARGET_OS)/$(BUILD_TYPE)
 
