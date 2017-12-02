@@ -28,6 +28,9 @@
     <ClCompile Include="mmio.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="closeness_centrality.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CudaCompile Include="closeness_centrality.cu">

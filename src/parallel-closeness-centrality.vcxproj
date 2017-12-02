@@ -16,6 +16,7 @@
     <ClInclude Include="mmio.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="closeness_centrality.cpp" />
     <ClCompile Include="graphio.c" />
     <ClCompile Include="mmio.c" />
   </ItemGroup>
