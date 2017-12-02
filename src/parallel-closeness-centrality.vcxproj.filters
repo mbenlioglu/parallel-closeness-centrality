@@ -28,7 +28,7 @@
     <ClCompile Include="mmio.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="closeness_centrality.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

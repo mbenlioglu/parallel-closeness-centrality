@@ -304,5 +304,7 @@ __pycache__/
 # Input data folder
 [Dd]ata/
 
+# Binary
+
 # Binary data
 *.bin
