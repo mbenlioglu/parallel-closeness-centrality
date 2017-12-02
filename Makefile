@@ -213,13 +213,13 @@ else
 endif
 
 closenessCentrality.o:./src/closeness_centrality.cu
-		$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
+		$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) -Xcompiler -std=c++14 $(GENCODE_FLAGS) -o $@ -c $<
 
 graphio.o:./src/graphio.c
-		$(EXEC) gcc -o $@ -c $< -O3
+		$(EXEC) $(HOST_COMPILER) -o $@ -c $< -O3 -fpermissive
 
 mmio.o:./src/mmio.c
-		$(EXEC) gcc -o $@ -c $< -O3 -fpermissive
+		$(EXEC) $(HOST_COMPILER) -o $@ -c $< -O3 -fpermissive
 
 main.o:./src/main.cpp
 		$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) -Xcompiler -std=c++14 $(GENCODE_FLAGS) -o $@ -c $+
