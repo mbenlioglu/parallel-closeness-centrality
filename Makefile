@@ -216,10 +216,10 @@ closenessCentrality.o:./src/closeness_centrality.cu
 		$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
 
 graphio.o:./src/graphio.c
-		$(EXEC) $(HOST_COMPILER) -o $@ -c $< -O3 -fpermissive
+		$(EXEC) gcc -o $@ -c $< -O3
 
 mmio.o:./src/mmio.c
-		$(EXEC) $(HOST_COMPILER) -o $@ -c $< -O3 -fpermissive
+		$(EXEC) gcc -o $@ -c $< -O3
 
 main.o:./src/main.cpp
 		$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) -Xcompiler -std=c++14 $(GENCODE_FLAGS) -o $@ -c $+
