@@ -114,12 +114,12 @@ else ifneq ($(TARGET_ARCH),$(HOST_ARCH))
 	endif
 endif
 HOST_COMPILER ?= g++
-NVCC		  := $(CUDA_PATH)/bin/nvcc -ccbin $(HOST_COMPILER)
+NVCC          := $(CUDA_PATH)/bin/nvcc -ccbin $(HOST_COMPILER)
 
 # internal flags
 NVCCFLAGS   := -m${TARGET_SIZE}
-CCFLAGS	 := -O3 -fopenmp -std=c++14
-LDFLAGS	 :=
+CCFLAGS     := -O3 -fopenmp -std=c++14
+LDFLAGS     :=
 
 # build flags
 ifeq ($(TARGET_OS),darwin)
@@ -150,10 +150,10 @@ endif
 
 # Debug build flags
 ifeq ($(dbg),1)
-	  NVCCFLAGS += -g -G
-	  BUILD_TYPE := debug
+		NVCCFLAGS += -g -G
+		BUILD_TYPE := debug
 else
-	  BUILD_TYPE := release
+		BUILD_TYPE := release
 endif
 
 ALL_CCFLAGS :=
